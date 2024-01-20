@@ -26,5 +26,10 @@ int main(void) {
 	printf("%s\n", aList[0].pNext->pNext->name);
 	printf("%s\n", aList[0].pNext->pNext->pNext->name);
 
+	USERDATA* pUser = &aList[0];
+	while (pUser != NULL) {
+		printf("[%p] %d, %s, %s, [next: %p]\n", pUser, pUser->age, pUser->name, pUser->phone, pUser->pNext);
+		pUser = pUser->pNext;
+	}
 	return 0;
 }
