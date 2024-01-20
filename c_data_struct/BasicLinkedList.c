@@ -21,5 +21,10 @@ int main(void) {
 	aList[2].pNext = &aList[3];
 	aList[3].pNext = NULL;
 
+	printf("%s\n", aList[0].name);
+	printf("%s\n", aList[0].pNext->name);
+	printf("%s\n", aList[0].pNext->pNext->name);
+	printf("%s\n", aList[0].pNext->pNext->pNext->name);
+
 	return 0;
 }
