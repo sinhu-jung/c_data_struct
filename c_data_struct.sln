@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "c_data_struct", "c_data_str
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NodeFileIO", "NodeFileIO\NodeFileIO.vcxproj", "{0082D58C-74CF-452B-B863-0B4D33FC38FE}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EventLoop", "EventLoop\EventLoop.vcxproj", "{90F1B554-E14C-4E19-A789-62CE08E211FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{0082D58C-74CF-452B-B863-0B4D33FC38FE}.Release|x64.Build.0 = Release|x64
 		{0082D58C-74CF-452B-B863-0B4D33FC38FE}.Release|x86.ActiveCfg = Release|Win32
 		{0082D58C-74CF-452B-B863-0B4D33FC38FE}.Release|x86.Build.0 = Release|Win32
+		{90F1B554-E14C-4E19-A789-62CE08E211FE}.Debug|x64.ActiveCfg = Debug|x64
+		{90F1B554-E14C-4E19-A789-62CE08E211FE}.Debug|x64.Build.0 = Debug|x64
+		{90F1B554-E14C-4E19-A789-62CE08E211FE}.Debug|x86.ActiveCfg = Debug|Win32
+		{90F1B554-E14C-4E19-A789-62CE08E211FE}.Debug|x86.Build.0 = Debug|Win32
+		{90F1B554-E14C-4E19-A789-62CE08E211FE}.Release|x64.ActiveCfg = Release|x64
+		{90F1B554-E14C-4E19-A789-62CE08E211FE}.Release|x64.Build.0 = Release|x64
+		{90F1B554-E14C-4E19-A789-62CE08E211FE}.Release|x86.ActiveCfg = Release|Win32
+		{90F1B554-E14C-4E19-A789-62CE08E211FE}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
