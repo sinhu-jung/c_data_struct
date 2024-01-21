@@ -21,8 +21,15 @@ void AddNewNode(int age,const char* pszName, const char* pszPhone) {
 	if (g_pHeadNode == NULL) 
 		g_pHeadNode = pNewNode;
 	else {
-		pNewNode->pNext = g_pHeadNode;
-		g_pHeadNode = pNewNode;
+		//Queue 구조
+		USERDATA* pTail = g_pHeadNode;
+		while (pTail->pNext != NULL)
+			pTail = pTail->pNext;
+		pTail->pNext = pNewNode;
+
+		//Stack 구조
+		/*pNewNode->pNext = g_pHeadNode;
+		g_pHeadNode = pNewNode;*/
 	}
 }
 
