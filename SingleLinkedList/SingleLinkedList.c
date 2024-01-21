@@ -55,6 +55,23 @@ void InitDummyData(void) {
 	AddNewNode(12, "Hoon2", "010-3333-3333");
 }
 
+USERDATA* SearchByName(const char* pszName) {
+	USERDATA* pTmp = g_pHeadNode;
+
+	while (pTmp != NULL)
+	{
+		if (strcmp(pTmp->name, pszName) == 0) {
+			printf("\"%s\": Found\n", pszName);
+			return pTmp;
+		}
+
+		pTmp = pTmp->pNext;
+	}
+
+	printf("\"%s\":Not Found\n", pszName);
+	return NULL;
+}
+
 void PrintList(void) {
 	USERDATA* pTmp = g_pHeadNode;
 
@@ -68,7 +85,13 @@ void PrintList(void) {
 int main(void) {
 
 	InitDummyData();
-	PrintList();
+
+	SearchByName("Hoon");
+	SearchByName("Hoon1");
+	SearchByName("Hoon2");
+	SearchByName("aaa");
+
+	//PrintList();
 	ReleaseList();
 
 	return 0;
