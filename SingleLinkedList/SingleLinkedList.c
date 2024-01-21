@@ -72,6 +72,46 @@ USERDATA* SearchByName(const char* pszName) {
 	return NULL;
 }
 
+USERDATA* SearchToRemove(USERDATA** ppPrev, const char* pszName) {
+	USERDATA* pCurrent = g_pHeadNode;
+	USERDATA* pPrev = NULL;
+
+	while (pCurrent != NULL)
+	{
+		if (strcmp(pCurrent->name, pszName) == 0) {
+			*ppPrev = pPrev;
+			return pCurrent;
+		}
+
+		pPrev = pCurrent;
+		pCurrent = pCurrent->pNext;
+	}
+
+	return NULL;
+}
+
+void RemoveNode(USERDATA* pPrev) {
+	USERDATA* pRemove = NULL;
+	if (pPrev == NULL) {
+		if (g_pHeadNode == NULL)
+			return;
+		else
+		{
+			pRemove = g_pHeadNode;
+			g_pHeadNode = pRemove->pNext;
+			printf("RemoveNode(): %s\n", pRemove->name);
+			free(pRemove);
+		}
+
+		return;
+	}
+
+	pRemove = pPrev->pNext;
+	pPrev->pNext = pRemove->pNext;
+	printf("RemoveNode(): %s\n", pRemove->name);
+	free(pRemove);
+}
+
 void PrintList(void) {
 	USERDATA* pTmp = g_pHeadNode;
 
@@ -80,18 +120,62 @@ void PrintList(void) {
 		printf("[%p] %d %s %s [%p]\n", pTmp, pTmp->age, pTmp->name, pTmp->phone, pTmp->pNext);
 		pTmp = pTmp->pNext;
 	}
+	putchar('\n');
+}
+
+void TestStep01(void) {
+	puts("TestStep01()--------------------------------");
+	AddNewNode(10, "Hoon1", "010-4444-4444");
+	AddNewNode(11, "Hoon2", "010-2222-2222");
+	AddNewNode(12, "Hoon3", "010-3333-3333");
+	PrintList();
+
+	USERDATA* pPrev = NULL;
+	if (SearchToRemove(&pPrev, "Hoon1") != NULL)
+		RemoveNode(pPrev);
+	PrintList();
+	ReleaseList();
+	putchar('\n');
+}
+
+void TestStep02(void) {
+	puts("TestStep02()--------------------------------");
+	AddNewNode(10, "Hoon1", "010-4444-4444");
+	AddNewNode(11, "Hoon2", "010-2222-2222");
+	AddNewNode(12, "Hoon3", "010-3333-3333");
+	PrintList();
+
+	USERDATA* pPrev = NULL;
+	if (SearchToRemove(&pPrev, "Hoon2") != NULL)
+		RemoveNode(pPrev);
+	PrintList();
+	ReleaseList();
+	putchar('\n');
+}
+
+void TestStep03(void) {
+	puts("TestStep03()--------------------------------");
+	AddNewNode(10, "Hoon1", "010-4444-4444");
+	AddNewNode(11, "Hoon2", "010-2222-2222");
+	AddNewNode(12, "Hoon3", "010-3333-3333");
+	PrintList();
+
+	USERDATA* pPrev = NULL;
+	if (SearchToRemove(&pPrev, "Hoon3") != NULL)
+		RemoveNode(pPrev);
+	PrintList();
+	ReleaseList();
+	putchar('\n');
 }
 
 int main(void) {
 
-	InitDummyData();
+	//InitDummyData();
 
-	SearchByName("Hoon");
-	SearchByName("Hoon1");
-	SearchByName("Hoon2");
-	SearchByName("aaa");
+	TestStep01();
+	TestStep02();
+	TestStep03();
 
-	//PrintList();
 	ReleaseList();
 
 	return 0;
