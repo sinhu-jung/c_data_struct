@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EventLoop", "EventLoop\Even
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SingleLinkedList", "SingleLinkedList\SingleLinkedList.vcxproj", "{EFCBDEF7-B951-4D97-825F-430A10DC49C9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StackQueue", "StackQueue\StackQueue.vcxproj", "{AFE29302-2E3B-4D52-93EB-A383C1C5F456}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +53,14 @@ Global
 		{EFCBDEF7-B951-4D97-825F-430A10DC49C9}.Release|x64.Build.0 = Release|x64
 		{EFCBDEF7-B951-4D97-825F-430A10DC49C9}.Release|x86.ActiveCfg = Release|Win32
 		{EFCBDEF7-B951-4D97-825F-430A10DC49C9}.Release|x86.Build.0 = Release|Win32
+		{AFE29302-2E3B-4D52-93EB-A383C1C5F456}.Debug|x64.ActiveCfg = Debug|x64
+		{AFE29302-2E3B-4D52-93EB-A383C1C5F456}.Debug|x64.Build.0 = Debug|x64
+		{AFE29302-2E3B-4D52-93EB-A383C1C5F456}.Debug|x86.ActiveCfg = Debug|Win32
+		{AFE29302-2E3B-4D52-93EB-A383C1C5F456}.Debug|x86.Build.0 = Debug|Win32
+		{AFE29302-2E3B-4D52-93EB-A383C1C5F456}.Release|x64.ActiveCfg = Release|x64
+		{AFE29302-2E3B-4D52-93EB-A383C1C5F456}.Release|x64.Build.0 = Release|x64
+		{AFE29302-2E3B-4D52-93EB-A383C1C5F456}.Release|x86.ActiveCfg = Release|Win32
+		{AFE29302-2E3B-4D52-93EB-A383C1C5F456}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
