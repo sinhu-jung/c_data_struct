@@ -9,7 +9,8 @@ typedef struct USERDATA {
 	struct USERDATA* pNext;
 } USERDATA;
 
-USERDATA* g_pHeadNode = NULL;
+//USERDATA* g_pHeadNode = NULL;
+USERDATA g_HeadNode = { 0, "__Dummy Node__" };
 
 void AddNewNode(int age,const char* pszName, const char* pszPhone) {
 	USERDATA* pNewNode = (USERDATA*)malloc(sizeof(USERDATA));
@@ -18,23 +19,16 @@ void AddNewNode(int age,const char* pszName, const char* pszPhone) {
 	strcpy_s(pNewNode->phone, sizeof(pNewNode->phone), pszPhone);
 	pNewNode->pNext = NULL;
 
-	if (g_pHeadNode == NULL) 
-		g_pHeadNode = pNewNode;
-	else {
 		//Queue 구조
-		USERDATA* pTail = g_pHeadNode;
+		USERDATA* pTail = &g_HeadNode;
 		while (pTail->pNext != NULL)
 			pTail = pTail->pNext;
 		pTail->pNext = pNewNode;
 
-		//Stack 구조
-		/*pNewNode->pNext = g_pHeadNode;
-		g_pHeadNode = pNewNode;*/
-	}
 }
 
 void ReleaseList(void) {
-	USERDATA* pTmp = g_pHeadNode;
+	USERDATA* pTmp = g_HeadNode.pNext;
 	USERDATA* pDelete;
 	while (pTmp != NULL)
 	{
@@ -46,7 +40,7 @@ void ReleaseList(void) {
 		free(pDelete);
 	}
 
-	g_pHeadNode = NULL;
+	g_HeadNode.pNext = NULL;
 }
 
 void InitDummyData(void) {
@@ -56,7 +50,7 @@ void InitDummyData(void) {
 }
 
 USERDATA* SearchByName(const char* pszName) {
-	USERDATA* pTmp = g_pHeadNode;
+	USERDATA* pTmp = g_HeadNode.pNext;
 
 	while (pTmp != NULL)
 	{
@@ -72,19 +66,14 @@ USERDATA* SearchByName(const char* pszName) {
 	return NULL;
 }
 
-USERDATA* SearchToRemove(USERDATA** ppPrev, const char* pszName) {
-	USERDATA* pCurrent = g_pHeadNode;
-	USERDATA* pPrev = NULL;
+USERDATA* SearchToRemove(const char* pszName) {
+	USERDATA* pPrev = &g_HeadNode;
 
-	while (pCurrent != NULL)
+	while (pPrev->pNext != NULL)
 	{
-		if (strcmp(pCurrent->name, pszName) == 0) {
-			*ppPrev = pPrev;
-			return pCurrent;
-		}
-
-		pPrev = pCurrent;
-		pCurrent = pCurrent->pNext;
+		if (strcmp(pPrev->pNext->name, pszName) == 0) 
+			return pPrev;
+		pPrev = pPrev->pNext;
 	}
 
 	return NULL;
@@ -92,28 +81,16 @@ USERDATA* SearchToRemove(USERDATA** ppPrev, const char* pszName) {
 
 void RemoveNode(USERDATA* pPrev) {
 	USERDATA* pRemove = NULL;
-	if (pPrev == NULL) {
-		if (g_pHeadNode == NULL)
-			return;
-		else
-		{
-			pRemove = g_pHeadNode;
-			g_pHeadNode = pRemove->pNext;
-			printf("RemoveNode(): %s\n", pRemove->name);
-			free(pRemove);
-		}
-
-		return;
-	}
-
+		
 	pRemove = pPrev->pNext;
 	pPrev->pNext = pRemove->pNext;
 	printf("RemoveNode(): %s\n", pRemove->name);
 	free(pRemove);
+	return;
 }
 
 void PrintList(void) {
-	USERDATA* pTmp = g_pHeadNode;
+	USERDATA* pTmp = g_HeadNode.pNext;
 
 	while (pTmp != NULL)
 	{
@@ -130,8 +107,8 @@ void TestStep01(void) {
 	AddNewNode(12, "Hoon3", "010-3333-3333");
 	PrintList();
 
-	USERDATA* pPrev = NULL;
-	if (SearchToRemove(&pPrev, "Hoon1") != NULL)
+	USERDATA* pPrev = SearchToRemove("Hoon1");
+	if (pPrev != NULL)
 		RemoveNode(pPrev);
 	PrintList();
 	ReleaseList();
@@ -145,8 +122,8 @@ void TestStep02(void) {
 	AddNewNode(12, "Hoon3", "010-3333-3333");
 	PrintList();
 
-	USERDATA* pPrev = NULL;
-	if (SearchToRemove(&pPrev, "Hoon2") != NULL)
+	USERDATA* pPrev = SearchToRemove("Hoon2");
+	if (pPrev != NULL)
 		RemoveNode(pPrev);
 	PrintList();
 	ReleaseList();
@@ -160,8 +137,8 @@ void TestStep03(void) {
 	AddNewNode(12, "Hoon3", "010-3333-3333");
 	PrintList();
 
-	USERDATA* pPrev = NULL;
-	if (SearchToRemove(&pPrev, "Hoon3") != NULL)
+	USERDATA* pPrev = SearchToRemove("Hoon3");
+	if (pPrev != NULL)
 		RemoveNode(pPrev);
 	PrintList();
 	ReleaseList();
